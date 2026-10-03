@@ -1,0 +1,18 @@
+.peliculas-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.tarjeta-pelicula {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  width: 250px;
+}
+.etiqueta-horario {
+  background: #eee;
+  padding: 3px 8px;
+  margin-right: 5px;
+  border-radius: 4px;
+  font-size: 0.9em;
+}

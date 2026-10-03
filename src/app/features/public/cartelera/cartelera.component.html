@@ -1,0 +1,77 @@
+<div class="cartelera-container">
+  
+  <section class="top-ventas">
+    <h2>Top peliculas mas vendidas</h2>
+    <div class="peliculas-grid">
+      @for (peli of peliculasTop(); track peli.id) {
+        <div class="tarjeta-pelicula destacada">
+          <img [src]="peli.imagen" [alt]="'Poster de ' + peli.nombre">
+          <h3>{{ peli.nombre }}</h3>
+          <p><strong>Genero:</strong> {{ peli.genero }} | <strong>Edad:</strong> {{ peli.clasificacion }}</p>
+          <button>Comprar entrada</button>
+        </div>
+      } @empty {
+        <p>No hay peliculas destacadas en este momento</p>
+      }
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="buscador">
+    <h2>toda la cartelera</h2>
+    <input 
+      type="text" 
+      placeholder="Buscar por nombre" 
+      [ngModel]="terminoBusqueda()" 
+      (ngModelChange)="terminoBusqueda.set($event)"
+    >
+    <select [ngModel]="generoFiltro()" (ngModelChange)="generoFiltro.set($event)">
+      <option value="">Todos los generos</option>
+      <option value="Acción">Accion</option>
+      <option value="Comedia">Comedia</option>
+      <option value="Suspenso">Suspenso</option>
+    </select>
+  </section>
+
+  <section class="lista-cartelera">
+    <div class="peliculas-grid">
+      @for (peli of peliculasFiltradas(); track peli.id) {
+        <div class="tarjeta-pelicula">
+          <img [src]="peli.imagen" [alt]="'Póster de ' + peli.nombre">
+          <h3>{{ peli.nombre }}</h3>
+          <p><em>{{ peli.sinopsis }}</em></p>
+          <p><strong>Duracion:</strong> {{ peli.duracion }} min</p>
+          <p><strong>Clasificación:</strong> {{ peli.clasificacion }}</p>
+          
+          <div class="horarios">
+            <strong>Horarios:</strong>
+            @for (horario of peli.horarios; track horario) {
+              <span class="etiqueta-horario">{{ horario }}</span>
+            }
+          </div>
+          <br>
+          <button>Ver asientos y comprar</button>
+        </div>
+      } @empty {
+        <p>No se encontraron peliculas con esos filtros</p>
+      }
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="proximamente">
+    <h2>próximamente</h2>
+    <div class="peliculas-grid">
+      @for (peli of proximosEstrenos(); track peli.id) {
+        <div class="tarjeta-pelicula estreno">
+          <img [src]="peli.imagen" [alt]="'Poster de ' + peli.nombre">
+          <h3>{{ peli.nombre }}</h3>
+          <p>¡Muy pronto en nuestros cines!</p>
+        </div>
+      }
+    </div>
+  </section>
+
+</div>
